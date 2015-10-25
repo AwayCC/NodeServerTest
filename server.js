@@ -1,6 +1,8 @@
 var http = require('http'),
     browserify = require('browserify'),
     literalify = require('literalify'),
+    server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
     React = require('react'),
     ReactDOMServer = require('react-dom/server'),
     DOM = React.DOM, body = DOM.body, div = DOM.div, script = DOM.script,
@@ -96,7 +98,7 @@ http.createServer(function(req, res) {
   }
 
 // The http server listens on port 3000
-}).listen(8080, function(err) {
+}).listen(server_port,server_ip_address, function(err) {
   if (err) throw err
   console.log('Listening on 3000...')
 })
